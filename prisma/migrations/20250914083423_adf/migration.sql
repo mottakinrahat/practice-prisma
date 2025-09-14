@@ -10,7 +10,7 @@ CREATE TABLE "public"."users" (
     "email" TEXT NOT NULL,
     "password" TEXT NOT NULL,
     "role" "public"."UserRole" NOT NULL,
-    "needPasswordChange" BOOLEAN NOT NULL DEFAULT false,
+    "needPasswordChange" BOOLEAN NOT NULL DEFAULT true,
     "status" "public"."UserStatus" NOT NULL DEFAULT 'ACTIVE',
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
@@ -19,7 +19,7 @@ CREATE TABLE "public"."users" (
 );
 
 -- CreateTable
-CREATE TABLE "public"."admins" (
+CREATE TABLE "public"."Admin" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "profilePhoto" TEXT,
@@ -29,14 +29,14 @@ CREATE TABLE "public"."admins" (
     "updatedAt" TIMESTAMP(3) NOT NULL,
     "email" TEXT NOT NULL,
 
-    CONSTRAINT "admins_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "Admin_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex
 CREATE UNIQUE INDEX "users_email_key" ON "public"."users"("email");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "admins_email_key" ON "public"."admins"("email");
+CREATE UNIQUE INDEX "Admin_email_key" ON "public"."Admin"("email");
 
 -- AddForeignKey
-ALTER TABLE "public"."admins" ADD CONSTRAINT "admins_email_fkey" FOREIGN KEY ("email") REFERENCES "public"."users"("email") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "public"."Admin" ADD CONSTRAINT "Admin_email_fkey" FOREIGN KEY ("email") REFERENCES "public"."users"("email") ON DELETE RESTRICT ON UPDATE CASCADE;

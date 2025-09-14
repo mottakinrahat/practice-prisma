@@ -25,7 +25,6 @@ model User {
   updatedAt          DateTime   @updatedAt
   admin              Admin?    
 
-  @@map("users")
 }
 
 model Admin {
@@ -38,8 +37,6 @@ model Admin {
   updatedAt     DateTime @updatedAt
   email         String   @unique
   user          User     @relation(fields: [email], references: [email])
-
-  @@map("admins")
 }
 
 enum UserRole {
