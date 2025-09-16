@@ -1,19 +1,13 @@
+import { pick } from "../../../shared/pick";
+import { adminFilterableFields } from "./admin.constant";
 import { AdminServices } from "./admin.services";
 
-const pick = (obj: any, keys: any) => {
-  const finalObj: any = {};
-  for (const key of keys) {
-    if (obj && Object.hasOwnProperty.call(obj, key)) {
-      finalObj[key] = obj[key];
-    }
-  }
-  return finalObj;
-};
+
 const getAllAdminFromDB = async (req: any, res: any) => {
   try {
-    const filter = pick(req.query, ["name", "email", "searchTerm", "contactNumber"]);
-
-    const result = await AdminServices.getAllAdmin(filter);
+    const filter = pick(req.query,adminFilterableFields);
+    const options=pick(req.query,["page","limit","sortBy","sortOrder"])
+    const result = await AdminServices.getAllAdmin(filter,options);
     res.status(200).json({
       success: true,
       message: "Admin data retrieved successfully",
