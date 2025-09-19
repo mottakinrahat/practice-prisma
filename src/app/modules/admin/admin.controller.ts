@@ -1,4 +1,4 @@
-
+import status from "http-status";
 import { sendResponse } from "../../../helpers/sendResponse";
 import { catchAsync } from "../../../helpers/trycatch";
 import { pick } from "../../../shared/pick";
@@ -13,7 +13,7 @@ const getAllAdminFromDB = catchAsync(async (req, res, next) => {
 
   sendResponse(res, {
     success: true,
-    statusCode: 200,
+    statusCode: status.OK,
     message: "Admin data retrieved successfully",
     meta: result?.meta,
     data: result?.data,

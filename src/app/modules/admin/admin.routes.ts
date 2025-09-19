@@ -1,33 +1,16 @@
-import express, { NextFunction, Request, Response } from "express";
+import express from "express";
 import { AdminController } from "./admin.controller";
-import { z, ZodObject } from "zod";
+import validateRequest from "../../middleWares/validateRequest";
+import { AdminValidation } from "./admin.validation";
 const router = express.Router();
-const update = z.object({
-  body: z.object({
-    name: z.string(),
-    contactNumber: z.string(),
-  }),
-});
-const validateRequest =
-  (schema: ZodObject) =>
-  async (req: Request, res: Response, next: NextFunction) => {
-    try {
-      await schema.parseAsync({
-        body: req?.body,
-      });
-      next();
-    } catch (error) {
-      next(error);
-    }
-  };
-router.get("/admins", AdminController.getAllAdminFromDB);
-router.get("/admins/:id", AdminController.getSingleAdmin);
+router.get("/", AdminController.getAllAdminFromDB);
+router.get("/:id", AdminController.getSingleAdmin);
 router.patch(
-  "/admins/:id",
-  validateRequest(update),
+  "/:id",
+  validateRequest(AdminValidation.updateAdminZodSchema),
   AdminController.updateAdminData
 );
-router.delete("/admins/:id", AdminController.deleteAdminData);
-router.delete("/admins/soft/:id", AdminController.softDeleteAdminData);
+router.delete("/:id", AdminController.deleteAdminData);
+router.delete("/soft/:id", AdminController.softDeleteAdminData);
 
 export const adminRoutes = router;

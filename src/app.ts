@@ -1,7 +1,10 @@
-import express, { Application, Request, Response } from "express";
+import express, {  Request, Response } from "express";
 import cors from "cors";
-import { userRoutes } from "./app/modules/User/user.routes";
-import { adminRoutes } from "./app/modules/admin/admin.routes";
+
+import router from "./app/routes";
+import { globalErrorHandler } from "./app/middleWares/globalErrorHandler";
+
+import notFound from "./app/middleWares/notFound";
 
 
 const app = express();
@@ -12,6 +15,10 @@ app.get("/", (req:Request, res:Response) => {
   res.send("Hello World!");
 });
 
-app.use('/api/v1',userRoutes)
-app.use('/api/v1',adminRoutes)
+app.use('/api/v1',router)
+
+
+
+app.use(globalErrorHandler);
+app.use(notFound);
 export default app;
