@@ -119,6 +119,7 @@ const softDeleteAdminFromDB = async (id: string) => {
   });
 
   return result;
+  
 };
 
 export const AdminServices = {
