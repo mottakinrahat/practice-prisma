@@ -26,13 +26,12 @@ const loginUser=catchAsync(async(req:Request,res:Response)=>{
 })
 const refreshToken=catchAsync(async(req:Request,res:Response)=>{
     const{refreshToken}=req.cookies;
-    console.log(refreshToken)
     const result=await authServices.refreshToken(refreshToken)
     
     sendResponse(res,{
         statusCode:status.OK,
         success:true,
-        message:"user logged in successfully",
+        message:"Token get successfully",
         data:result
         // data:{
         //     accessToken:result.accessToken,
