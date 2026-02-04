@@ -100,7 +100,6 @@ const deleteAdminFromDB = async (id: string) => {
 };
 const softDeleteAdminFromDB = async (id: string) => {
   // Check if the admin exists before proceeding with deletion
-  console.log(id);
 
   // Perform the delete operation in a transaction
   const result = await prisma.$transaction(async (transactionClient) => {

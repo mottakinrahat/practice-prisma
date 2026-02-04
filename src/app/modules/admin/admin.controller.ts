@@ -58,7 +58,6 @@ const deleteAdminData = catchAsync(async (req: any, res: any) => {
 
 const softDeleteAdminData = catchAsync(async (req: any, res: any) => {
   const { id } = req.params;
-  console.log(id);
   const result = await AdminServices.softDeleteAdminFromDB(id);
 
   sendResponse(res, {

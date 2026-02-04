@@ -74,8 +74,8 @@ const refreshToken = async (token: string) => {
       email: userData?.email,
       role: userData?.role,
     },
-    config.jwt.jwt_secret as Secret,
-    config.jwt.expires_in as string
+    process.env.jwt_secret as Secret,
+    process.env.expires_in as string
   );
    return {
     accessToken,
