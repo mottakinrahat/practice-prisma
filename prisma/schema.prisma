@@ -41,6 +41,7 @@ model Admin {
 
 enum UserRole {
   ADMIN
+  SUPER_ADMIN
   DOCTOR
   NURSE
   RECEPTIONIST

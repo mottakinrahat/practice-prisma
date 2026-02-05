@@ -1,17 +1,17 @@
 -- CreateEnum
-CREATE TYPE "public"."UserRole" AS ENUM ('ADMIN', 'DOCTOR', 'NURSE', 'RECEPTIONIST', 'PATIENT');
+CREATE TYPE "UserRole" AS ENUM ('ADMIN', 'SUPER_ADMIN', 'DOCTOR', 'NURSE', 'RECEPTIONIST', 'PATIENT');
 
 -- CreateEnum
-CREATE TYPE "public"."UserStatus" AS ENUM ('ACTIVE', 'BLOCKED', 'DELETED');
+CREATE TYPE "UserStatus" AS ENUM ('ACTIVE', 'BLOCKED', 'DELETED');
 
 -- CreateTable
-CREATE TABLE "public"."User" (
+CREATE TABLE "User" (
     "id" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "password" TEXT NOT NULL,
-    "role" "public"."UserRole" NOT NULL,
+    "role" "UserRole" NOT NULL,
     "needPasswordChange" BOOLEAN NOT NULL DEFAULT true,
-    "status" "public"."UserStatus" NOT NULL DEFAULT 'ACTIVE',
+    "status" "UserStatus" NOT NULL DEFAULT 'ACTIVE',
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -19,7 +19,7 @@ CREATE TABLE "public"."User" (
 );
 
 -- CreateTable
-CREATE TABLE "public"."Admin" (
+CREATE TABLE "Admin" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "profilePhoto" TEXT,
@@ -33,10 +33,10 @@ CREATE TABLE "public"."Admin" (
 );
 
 -- CreateIndex
-CREATE UNIQUE INDEX "User_email_key" ON "public"."User"("email");
+CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Admin_email_key" ON "public"."Admin"("email");
+CREATE UNIQUE INDEX "Admin_email_key" ON "Admin"("email");
 
 -- AddForeignKey
-ALTER TABLE "public"."Admin" ADD CONSTRAINT "Admin_email_fkey" FOREIGN KEY ("email") REFERENCES "public"."User"("email") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Admin" ADD CONSTRAINT "Admin_email_fkey" FOREIGN KEY ("email") REFERENCES "User"("email") ON DELETE RESTRICT ON UPDATE CASCADE;

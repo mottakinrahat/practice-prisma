@@ -12,6 +12,7 @@ export const auth = (...roles: string[]) => {
     next: NextFunction
   ) => {
     try {
+
       const token = req.headers.authorization;
       if (!token) {
         throw new Error("You are not authorized");
