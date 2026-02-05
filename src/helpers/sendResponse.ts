@@ -3,7 +3,7 @@ export const sendResponse = <T>(
   res: Response,
   jsonData: {
     success: boolean;
-    statusCode: number;
+    statusCode: number;//
     message: string;
     meta?: {
       page?: number;
