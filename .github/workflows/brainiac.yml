@@ -1,12 +1,19 @@
 name: brainiac
 
-on: push
+on:
+  push:
+    branches:
+      - main   # change if your branch is different
+  workflow_dispatch:   # allows manual run from Actions tab
 
 jobs:
   first-job:
     runs-on: windows-latest
 
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Print message
         run: echo "Let's dive with brainiac."
 
