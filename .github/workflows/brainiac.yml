@@ -1,15 +1,16 @@
 name: brainiac
 
-on:push
+on: push
 
-jobs: 
-    first-job:
-      runs-on: windows-latest
+jobs:
+  first-job:
+    runs-on: windows-latest
 
-      steps:
-         - name: print message
-           run: echo "Let's dive with brainiac."
+    steps:
+      - name: Print message
+        run: echo "Let's dive with brainiac."
 
-         - name: Check Linting
-           run: echo "Linting checking..."
-           
+      - name: Check Linting
+        run: |
+          echo "Linting checking..."
+          echo "Is there any issue in this code?"
