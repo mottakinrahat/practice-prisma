@@ -1,0 +1,15 @@
+name: brainiac
+
+on:push
+
+jobs: 
+    first-job:
+      runs-on: windows-latest
+
+      steps:
+         - name: print message
+           run: echo "Let's dive with brainiac."
+
+         - name: Check Linting
+           run: echo "Linting checking..."
+           
