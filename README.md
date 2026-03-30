@@ -1,1 +1,1 @@
-Brainiac
+Brainiac is a smart AI 
